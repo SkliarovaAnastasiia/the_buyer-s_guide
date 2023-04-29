@@ -16,5 +16,10 @@ namespace the_buyer_s_guide
         {
             InitializeComponent();
         }
+
+        private void SearchForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
