@@ -1,7 +1,7 @@
 ﻿
 namespace TraidingPointsApp.Models
 {
-    internal class Shop
+    public class Shop
     {
         public string Name { get; set; }
         public string Address { get; set; }
