@@ -1,6 +1,6 @@
 ﻿namespace the_buyer_s_guide
 {
-    partial class SearchForm
+    partial class Favourite
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // SearchForm
+            // Favourite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1252, 813);
-            this.Name = "SearchForm";
-            this.Text = "Form2";
+            this.ClientSize = new System.Drawing.Size(1080, 777);
+            this.Name = "Favourite";
+            this.Text = "Favourite";
+            this.Load += new System.EventHandler(this.Favourite_Load);
             this.ResumeLayout(false);
 
         }

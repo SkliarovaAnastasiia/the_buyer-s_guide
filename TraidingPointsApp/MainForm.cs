@@ -7,17 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TraidingPointsApp.Models;
 
-namespace the_buyer_s_guide
+namespace TraidingPointsApp
 {
-    public partial class SearchForm : Form
+    public partial class MainForm : Form
     {
-        public SearchForm()
+        TraidingPoints traidingPoints;
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void SearchForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
 
         }
