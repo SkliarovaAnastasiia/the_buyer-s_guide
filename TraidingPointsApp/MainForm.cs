@@ -12,7 +12,7 @@ namespace TraidingPointsApp
         {
             InitializeComponent();
             traidingPoints = new TraidingPoints();
-            traidingPoints.GenTestData(15);
+            //traidingPoints.GenTestData(1);
             shopBindingSource.DataSource = traidingPoints.Shops;
         }
 
@@ -57,6 +57,46 @@ namespace TraidingPointsApp
             if(dialogRes == DialogResult.OK)
             {
                 traidingPoints.Shops.Add(addShopForm.Shop);
+                shopBindingSource.ResetBindings(true);
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete the current record?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                shopBindingSource.RemoveCurrent();
+            }
+
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var selectedRow = dataGridView1.CurrentRow;
+
+            if (selectedRow == null)
+            {
+                return;
+            }
+
+            var selectedShop = selectedRow.DataBoundItem as Shop;
+
+            if (selectedShop == null)
+            {
+                return;
+            }
+
+            EditShopForm editShopForm = new EditShopForm(selectedShop);
+            
+            if (editShopForm.ShowDialog() == DialogResult.OK)
+            {
                 shopBindingSource.ResetBindings(true);
             }
         }

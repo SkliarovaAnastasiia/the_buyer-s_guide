@@ -5,17 +5,25 @@ using TraidingPointsApp.Models;
 
 namespace TraidingPointsApp
 {
-    public partial class AddShopForm : Form
+
+    public partial class EditShopForm : Form
     {
         public Shop Shop;
-      
-        public AddShopForm()
+        public EditShopForm(Shop shop)
         {
             InitializeComponent();
+            Shop = shop;
+            AddNameTextBox.Text = shop.Name;
+            AddAddressTextBox.Text = shop.Address;
+            AddPhoneTextBox.Text = shop.Telephone;
+            AddSpecializationTextBox.Text = shop.Specialization;
+            AddOwnershipTextBox.Text = shop.Ownership;
+            AddWorkingHoursTextBox.Text = shop.WorkingHours;
         }
-        private void AddShopForm_Load(object sender, EventArgs e)
+
+        private void EditShopForm_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -25,20 +33,18 @@ namespace TraidingPointsApp
 
         private void AddShopButton_Click(object sender, EventArgs e)
         {
-            if (ValidateFields()) 
+            if (ValidateFields())
             {
-                Shop = new Shop
-                {
-                    Name = AddNameTextBox.Text,
-                    Address = AddAddressTextBox.Text,
-                    Telephone = AddPhoneTextBox.Text,
-                    Specialization = AddSpecializationTextBox.Text,
-                    Ownership = AddOwnershipTextBox.Text,
-                    WorkingHours = AddWorkingHoursTextBox.Text
-                };
-                this.DialogResult = DialogResult.OK;
+                Shop.Name = AddNameTextBox.Text;
+                Shop.Address = AddAddressTextBox.Text;
+                Shop.Telephone = AddPhoneTextBox.Text;
+                Shop.Specialization = AddSpecializationTextBox.Text;
+                Shop.Ownership = AddOwnershipTextBox.Text;
+                Shop.WorkingHours = AddWorkingHoursTextBox.Text;
+                DialogResult = DialogResult.OK;
             }
         }
+
         private bool ValidateFields()
         {
             if (AddNameTextBox.Text.Length < 2)
@@ -83,7 +89,7 @@ namespace TraidingPointsApp
                 return false;
             }
 
-          
+
 
             //if (!int.TryParse(AddWorkingHoursTextBox.Text, out _))
             //{

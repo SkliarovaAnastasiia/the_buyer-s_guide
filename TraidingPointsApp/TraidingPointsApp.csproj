@@ -55,6 +55,12 @@
       <DependentUpon>AddShopForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\DataAccess.cs" />
+    <Compile Include="EditShopForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditShopForm.Designer.cs">
+      <DependentUpon>EditShopForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddShopForm.resx">
       <DependentUpon>AddShopForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditShopForm.resx">
+      <DependentUpon>EditShopForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
