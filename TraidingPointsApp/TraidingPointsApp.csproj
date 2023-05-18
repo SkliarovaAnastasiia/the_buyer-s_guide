@@ -48,36 +48,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddShopForm.cs">
+    <Compile Include="Forms\AddShopForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddShopForm.Designer.cs">
+    <Compile Include="Forms\AddShopForm.Designer.cs">
       <DependentUpon>AddShopForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\DataAccess.cs" />
-    <Compile Include="EditShopForm.cs">
+    <Compile Include="Forms\EditShopForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditShopForm.Designer.cs">
+    <Compile Include="Forms\EditShopForm.Designer.cs">
       <DependentUpon>EditShopForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\TraidingPoints.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddShopForm.resx">
+    <EmbeddedResource Include="Forms\AddShopForm.resx">
       <DependentUpon>AddShopForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditShopForm.resx">
+    <EmbeddedResource Include="Forms\EditShopForm.resx">
       <DependentUpon>EditShopForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

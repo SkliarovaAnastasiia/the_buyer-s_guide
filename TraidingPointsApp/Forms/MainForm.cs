@@ -52,13 +52,15 @@ namespace TraidingPointsApp
 
         private void AddShopButton_Click(object sender, EventArgs e)
         {
-            AddShopForm addShopForm = new AddShopForm();
+            var addShopForm = new AddShopForm();
             var dialogRes = addShopForm.ShowDialog();
             if(dialogRes == DialogResult.OK)
             {
                 traidingPoints.Shops.Add(addShopForm.Shop);
                 shopBindingSource.ResetBindings(true);
+                traidingPoints.IsDirty = true;
             }
+        //    dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -74,7 +76,7 @@ namespace TraidingPointsApp
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Close();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -98,6 +100,30 @@ namespace TraidingPointsApp
             if (editShopForm.ShowDialog() == DialogResult.OK)
             {
                 shopBindingSource.ResetBindings(true);
+                traidingPoints.IsDirty = true;
+            }
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!traidingPoints.IsDirty)
+                return;
+            var res = MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNoCancel);
+            switch (res)
+            {
+                case DialogResult.Yes:
+                    DataAccess.Save(traidingPoints);
+                    break;
+                case DialogResult.No:
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
             }
         }
     }

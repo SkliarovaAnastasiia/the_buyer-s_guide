@@ -5,6 +5,7 @@ namespace TraidingPointsApp.Models
 {
     public class TraidingPoints
     {
+        public bool IsDirty { get; set; }
         public TraidingPoints()
         {
 

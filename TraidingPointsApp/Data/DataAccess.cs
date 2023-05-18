@@ -13,12 +13,17 @@ namespace TraidingPointsApp.Data
         {
             string jsonString = JsonSerializer.Serialize(traidingPoints.Shops);
             File.WriteAllText(DATA_PATH, jsonString);
+            traidingPoints.IsDirty = false;
         }
 
         public static void Load (TraidingPoints traidingPoints)
         {
             string jsonString = File.ReadAllText(DATA_PATH);
             traidingPoints.Shops = JsonSerializer.Deserialize<List<Shop>>(jsonString);
+            var newTradingPoints = JsonSerializer.Deserialize<List<Shop>>(jsonString);
+            traidingPoints.Shops.Clear();
+            traidingPoints.Shops.AddRange(newTradingPoints);
+            traidingPoints.IsDirty = false;
         }
     }
 }
