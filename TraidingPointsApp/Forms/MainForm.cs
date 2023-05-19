@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using TraidingPointsApp.Data;
 using TraidingPointsApp.Models;
+using System.Collections.Generic;
 
 namespace TraidingPointsApp
 {
@@ -12,7 +13,7 @@ namespace TraidingPointsApp
         {
             InitializeComponent();
             traidingPoints = new TraidingPoints();
-            //traidingPoints.GenTestData(1);
+            //traidingPoints.GenTestData(50);
             shopBindingSource.DataSource = traidingPoints.Shops;
         }
 
@@ -81,27 +82,27 @@ namespace TraidingPointsApp
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var selectedRow = dataGridView1.CurrentRow;
+                var selectedRow = dataGridView1.CurrentRow;
 
-            if (selectedRow == null)
-            {
-                return;
-            }
+                if (selectedRow == null)
+                {
+                    return;
+                }
 
-            var selectedShop = selectedRow.DataBoundItem as Shop;
+                var selectedShop = selectedRow.DataBoundItem as Shop;
 
-            if (selectedShop == null)
-            {
-                return;
-            }
+                if (selectedShop == null)
+                {
+                    return;
+                }
 
-            EditShopForm editShopForm = new EditShopForm(selectedShop);
-            
-            if (editShopForm.ShowDialog() == DialogResult.OK)
-            {
-                shopBindingSource.ResetBindings(true);
-                traidingPoints.IsDirty = true;
-            }
+                EditShopForm editShopForm = new EditShopForm(selectedShop);
+
+                if (editShopForm.ShowDialog() == DialogResult.OK)
+                {
+                    shopBindingSource.ResetBindings(true);
+                    traidingPoints.IsDirty = true;
+                }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -125,6 +126,12 @@ namespace TraidingPointsApp
                     e.Cancel = true;
                     break;
             }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            List<Shop> result = traidingPoints.SearchShops(searchByNameBox.Text.ToLower());
+            shopBindingSource.DataSource = result;
         }
     }
 }

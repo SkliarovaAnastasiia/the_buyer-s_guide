@@ -89,13 +89,6 @@ namespace TraidingPointsApp
                 return false;
             }
 
-
-
-            //if (!int.TryParse(AddWorkingHoursTextBox.Text, out _))
-            //{
-            //MessageBox.Show("Поле 'Working Hours' має містити цифрові значення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //return false;
-            //}
             if (!IsValidWorkingHours(AddWorkingHoursTextBox.Text))
             {
                 MessageBox.Show("Неприпустимий формат поля 'Working Hours'.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -107,7 +100,7 @@ namespace TraidingPointsApp
         }
         private bool IsValidWorkingHours(string input)
         {
-            string pattern = @"^\d{1,2}([-:]?\d{1,2})?([-:]?\d{1,2})?$";
+            string pattern = @"^(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})$";
 
             return Regex.IsMatch(input, pattern);
         }

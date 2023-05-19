@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 
 
 namespace TraidingPointsApp.Models
@@ -28,6 +29,21 @@ namespace TraidingPointsApp.Models
             //    };
             //    Shops.Add(point);
             //}
+        }
+        internal List<Shop> SearchShops(string line)
+        {
+            List<Shop> result = new List<Shop>();
+            var t = line.ToLower();
+            foreach (Shop shop in Shops)
+            {
+                if (shop.Name != null && shop.Name.ToLower().IndexOf(t) > -1 ||
+         shop.Specialization != null && shop.Specialization.ToLower().IndexOf(t) > -1 ||
+         shop.Address != null && shop.Address.ToLower().IndexOf(t) > -1)
+                {
+                    result.Add(shop);
+                }
+            }
+            return result;
         }
     }
 }

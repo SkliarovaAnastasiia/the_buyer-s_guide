@@ -101,7 +101,7 @@ namespace TraidingPointsApp
         }
         private bool IsValidWorkingHours(string input)
         {
-            string pattern = @"^\d{1,2}([-:]?\d{1,2})?([-:]?\d{1,2})?$";
+            string pattern = @"^(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})$";
 
             return Regex.IsMatch(input, pattern);
         }
