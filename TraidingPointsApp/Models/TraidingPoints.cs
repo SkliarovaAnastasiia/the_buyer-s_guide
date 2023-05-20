@@ -9,9 +9,12 @@ namespace TraidingPointsApp.Models
         public bool IsDirty { get; set; }
         public TraidingPoints()
         {
-
+            Shops = new List<Shop>(); 
+            Favorites = new List<Shop>(); 
         }
         public List<Shop> Shops { get; set; }
+        public List<Shop> Favorites { get; set; }
+
 
         public void GenTestData(int n)
         {
@@ -45,5 +48,6 @@ namespace TraidingPointsApp.Models
             }
             return result;
         }
+
     }
 }

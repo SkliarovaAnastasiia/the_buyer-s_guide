@@ -3,18 +3,22 @@ using System.Windows.Forms;
 using TraidingPointsApp.Data;
 using TraidingPointsApp.Models;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace TraidingPointsApp
 {
     public partial class MainForm : Form
     {
         TraidingPoints traidingPoints;
+        List<Shop> favorites = new List<Shop>();
+
         public MainForm()
         {
             InitializeComponent();
             traidingPoints = new TraidingPoints();
             //traidingPoints.GenTestData(50);
             shopBindingSource.DataSource = traidingPoints.Shops;
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -40,69 +44,76 @@ namespace TraidingPointsApp
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataAccess.Load(traidingPoints);
-            //shopBindingSource.ResetBindings(true);
+            shopBindingSource.ResetBindings(true);
             shopBindingSource.DataSource = traidingPoints.Shops;
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             traidingPoints.Shops.Clear();
-            shopBindingSource. Clear();
-            //shopBindingSource.ResetBindings(true);
+            shopBindingSource.Clear();
+            shopBindingSource.ResetBindings(true);
+
         }
 
-        private void AddShopButton_Click(object sender, EventArgs e)
+        private void addShopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var addShopForm = new AddShopForm();
             var dialogRes = addShopForm.ShowDialog();
-            if(dialogRes == DialogResult.OK)
+            if (dialogRes == DialogResult.OK)
             {
-                traidingPoints.Shops.Add(addShopForm.Shop);
-                shopBindingSource.ResetBindings(true);
-                traidingPoints.IsDirty = true;
+                if (addShopForm.Shop != null) 
+                {
+                    //traidingPoints.Shops.Add(addShopForm.Shop);
+                    traidingPoints.Shops.Insert(0, addShopForm.Shop);
+                    shopBindingSource.ResetBindings(true);
+                    traidingPoints.IsDirty = true;
+                }
             }
-        //    dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
+
         }
 
-        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void removeShopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to delete the current record?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+            DialogResult result = MessageBox.Show("Are you sure that you want to delete the current shop?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var currentShop = shopBindingSource.Current as Shop;
             if (result == DialogResult.Yes)
             {
                 shopBindingSource.RemoveCurrent();
+                traidingPoints.Shops.Remove(currentShop);
+                DataAccess.Save(traidingPoints);
             }
 
         }
 
-        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        private void editShopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                var selectedRow = dataGridView1.CurrentRow;
+            var selectedRow = dataGridView1.CurrentRow;
 
-                if (selectedRow == null)
-                {
-                    return;
-                }
+            if (selectedRow == null)
+            {
+                return;
+            }
 
-                var selectedShop = selectedRow.DataBoundItem as Shop;
+            var selectedShop = selectedRow.DataBoundItem as Shop;
 
-                if (selectedShop == null)
-                {
-                    return;
-                }
+            if (selectedShop == null)
+            {
+                return;
+            }
 
-                EditShopForm editShopForm = new EditShopForm(selectedShop);
+            EditShopForm editShopForm = new EditShopForm(selectedShop);
 
-                if (editShopForm.ShowDialog() == DialogResult.OK)
-                {
-                    shopBindingSource.ResetBindings(true);
-                    traidingPoints.IsDirty = true;
-                }
+            if (editShopForm.ShowDialog() == DialogResult.OK)
+            {
+                shopBindingSource.ResetBindings(true);
+                traidingPoints.IsDirty = true;
+            }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -127,11 +138,74 @@ namespace TraidingPointsApp
                     break;
             }
         }
-
+        
         private void searchButton_Click(object sender, EventArgs e)
         {
-            List<Shop> result = traidingPoints.SearchShops(searchByNameBox.Text.ToLower());
+            List<Shop> result = traidingPoints.SearchShops(searchBox.Text.ToLower());
             shopBindingSource.DataSource = result;
+
+        }
+
+        private void searchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                List<Shop> result = traidingPoints.SearchShops(searchBox.Text.ToLower());
+                shopBindingSource.DataSource = result;
+            }
+        }
+
+        private void toFavouriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void showFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            favorites = DataAccess.LoadFavorites();
+            if (favorites != null)
+            {
+                shopBindingSource.DataSource = favorites;
+            }
+        }
+
+        private void addToFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var currentShop = shopBindingSource.Current as Shop;
+
+            if (currentShop != null && !favorites.Contains(currentShop))
+            {
+                favorites.Add(currentShop);
+                DataAccess.SaveFavorites(favorites);
+            }
+        }
+
+        private void saveToFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void removeFromFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete the current record?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                var currentShop = shopBindingSource.Current as Shop;
+
+                if (currentShop != null)
+                {
+                    shopBindingSource.RemoveCurrent(); 
+                    favorites.Remove(currentShop);
+                    DataAccess.SaveFavorites(favorites); 
+                }
+            }
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            searchBox.KeyDown += searchBox_KeyDown;
         }
     }
 }

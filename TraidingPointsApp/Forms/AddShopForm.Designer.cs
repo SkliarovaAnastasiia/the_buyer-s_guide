@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddShopButton = new System.Windows.Forms.Button();
+            this.addShopButton = new System.Windows.Forms.Button();
             this.AddNameLabel = new System.Windows.Forms.Label();
-            this.AddNameTextBox = new System.Windows.Forms.TextBox();
+            this.addNameTextBox = new System.Windows.Forms.TextBox();
             this.AddAddressLabel = new System.Windows.Forms.Label();
-            this.AddAddressTextBox = new System.Windows.Forms.TextBox();
+            this.addAddressTextBox = new System.Windows.Forms.TextBox();
             this.AddTelephoneLabel = new System.Windows.Forms.Label();
-            this.AddPhoneTextBox = new System.Windows.Forms.TextBox();
+            this.addPhoneTextBox = new System.Windows.Forms.TextBox();
             this.AddSpecializalionLabel = new System.Windows.Forms.Label();
-            this.AddSpecializationTextBox = new System.Windows.Forms.TextBox();
+            this.addSpecializationTextBox = new System.Windows.Forms.TextBox();
             this.AddOwnershipLabel = new System.Windows.Forms.Label();
-            this.AddOwnershipTextBox = new System.Windows.Forms.TextBox();
+            this.addOwnershipTextBox = new System.Windows.Forms.TextBox();
             this.AddWorkingHoursLabel = new System.Windows.Forms.Label();
-            this.AddWorkingHoursTextBox = new System.Windows.Forms.TextBox();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.addWorkingHoursTextBox = new System.Windows.Forms.TextBox();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // AddShopButton
+            // addShopButton
             // 
-            this.AddShopButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.AddShopButton.FlatAppearance.BorderSize = 0;
-            this.AddShopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddShopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddShopButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AddShopButton.Location = new System.Drawing.Point(230, 389);
-            this.AddShopButton.Name = "AddShopButton";
-            this.AddShopButton.Size = new System.Drawing.Size(214, 66);
-            this.AddShopButton.TabIndex = 0;
-            this.AddShopButton.Text = "Add Shop";
-            this.AddShopButton.UseVisualStyleBackColor = false;
-            this.AddShopButton.Click += new System.EventHandler(this.AddShopButton_Click);
+            this.addShopButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.addShopButton.FlatAppearance.BorderSize = 0;
+            this.addShopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addShopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addShopButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addShopButton.Location = new System.Drawing.Point(230, 389);
+            this.addShopButton.Name = "addShopButton";
+            this.addShopButton.Size = new System.Drawing.Size(214, 66);
+            this.addShopButton.TabIndex = 0;
+            this.addShopButton.Text = "Add Shop";
+            this.addShopButton.UseVisualStyleBackColor = false;
+            this.addShopButton.Click += new System.EventHandler(this.addShopButton_Click);
             // 
             // AddNameLabel
             // 
@@ -68,12 +68,12 @@
             this.AddNameLabel.TabIndex = 1;
             this.AddNameLabel.Text = "Name";
             // 
-            // AddNameTextBox
+            // addNameTextBox
             // 
-            this.AddNameTextBox.Location = new System.Drawing.Point(204, 55);
-            this.AddNameTextBox.Name = "AddNameTextBox";
-            this.AddNameTextBox.Size = new System.Drawing.Size(442, 31);
-            this.AddNameTextBox.TabIndex = 2;
+            this.addNameTextBox.Location = new System.Drawing.Point(204, 55);
+            this.addNameTextBox.Name = "addNameTextBox";
+            this.addNameTextBox.Size = new System.Drawing.Size(442, 31);
+            this.addNameTextBox.TabIndex = 2;
             // 
             // AddAddressLabel
             // 
@@ -84,12 +84,12 @@
             this.AddAddressLabel.TabIndex = 3;
             this.AddAddressLabel.Text = "Address";
             // 
-            // AddAddressTextBox
+            // addAddressTextBox
             // 
-            this.AddAddressTextBox.Location = new System.Drawing.Point(204, 103);
-            this.AddAddressTextBox.Name = "AddAddressTextBox";
-            this.AddAddressTextBox.Size = new System.Drawing.Size(442, 31);
-            this.AddAddressTextBox.TabIndex = 4;
+            this.addAddressTextBox.Location = new System.Drawing.Point(204, 103);
+            this.addAddressTextBox.Name = "addAddressTextBox";
+            this.addAddressTextBox.Size = new System.Drawing.Size(442, 31);
+            this.addAddressTextBox.TabIndex = 4;
             // 
             // AddTelephoneLabel
             // 
@@ -100,12 +100,12 @@
             this.AddTelephoneLabel.TabIndex = 5;
             this.AddTelephoneLabel.Text = "Telephone";
             // 
-            // AddPhoneTextBox
+            // addPhoneTextBox
             // 
-            this.AddPhoneTextBox.Location = new System.Drawing.Point(204, 154);
-            this.AddPhoneTextBox.Name = "AddPhoneTextBox";
-            this.AddPhoneTextBox.Size = new System.Drawing.Size(442, 31);
-            this.AddPhoneTextBox.TabIndex = 6;
+            this.addPhoneTextBox.Location = new System.Drawing.Point(204, 154);
+            this.addPhoneTextBox.Name = "addPhoneTextBox";
+            this.addPhoneTextBox.Size = new System.Drawing.Size(442, 31);
+            this.addPhoneTextBox.TabIndex = 6;
             // 
             // AddSpecializalionLabel
             // 
@@ -116,12 +116,12 @@
             this.AddSpecializalionLabel.TabIndex = 7;
             this.AddSpecializalionLabel.Text = "Specialization";
             // 
-            // AddSpecializationTextBox
+            // addSpecializationTextBox
             // 
-            this.AddSpecializationTextBox.Location = new System.Drawing.Point(204, 203);
-            this.AddSpecializationTextBox.Name = "AddSpecializationTextBox";
-            this.AddSpecializationTextBox.Size = new System.Drawing.Size(442, 31);
-            this.AddSpecializationTextBox.TabIndex = 8;
+            this.addSpecializationTextBox.Location = new System.Drawing.Point(204, 203);
+            this.addSpecializationTextBox.Name = "addSpecializationTextBox";
+            this.addSpecializationTextBox.Size = new System.Drawing.Size(442, 31);
+            this.addSpecializationTextBox.TabIndex = 8;
             // 
             // AddOwnershipLabel
             // 
@@ -132,12 +132,12 @@
             this.AddOwnershipLabel.TabIndex = 9;
             this.AddOwnershipLabel.Text = "Ownership";
             // 
-            // AddOwnershipTextBox
+            // addOwnershipTextBox
             // 
-            this.AddOwnershipTextBox.Location = new System.Drawing.Point(204, 256);
-            this.AddOwnershipTextBox.Name = "AddOwnershipTextBox";
-            this.AddOwnershipTextBox.Size = new System.Drawing.Size(442, 31);
-            this.AddOwnershipTextBox.TabIndex = 10;
+            this.addOwnershipTextBox.Location = new System.Drawing.Point(204, 256);
+            this.addOwnershipTextBox.Name = "addOwnershipTextBox";
+            this.addOwnershipTextBox.Size = new System.Drawing.Size(442, 31);
+            this.addOwnershipTextBox.TabIndex = 10;
             // 
             // AddWorkingHoursLabel
             // 
@@ -148,48 +148,48 @@
             this.AddWorkingHoursLabel.TabIndex = 11;
             this.AddWorkingHoursLabel.Text = "Working Hours";
             // 
-            // AddWorkingHoursTextBox
+            // addWorkingHoursTextBox
             // 
-            this.AddWorkingHoursTextBox.Location = new System.Drawing.Point(204, 310);
-            this.AddWorkingHoursTextBox.Name = "AddWorkingHoursTextBox";
-            this.AddWorkingHoursTextBox.Size = new System.Drawing.Size(442, 31);
-            this.AddWorkingHoursTextBox.TabIndex = 12;
+            this.addWorkingHoursTextBox.Location = new System.Drawing.Point(204, 310);
+            this.addWorkingHoursTextBox.Name = "addWorkingHoursTextBox";
+            this.addWorkingHoursTextBox.Size = new System.Drawing.Size(442, 31);
+            this.addWorkingHoursTextBox.TabIndex = 12;
             // 
-            // CancelButton
+            // cancelButton
             // 
-            this.CancelButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.CancelButton.FlatAppearance.BorderSize = 0;
-            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CancelButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.CancelButton.Location = new System.Drawing.Point(469, 389);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(214, 66);
-            this.CancelButton.TabIndex = 13;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = false;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.cancelButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.cancelButton.FlatAppearance.BorderSize = 0;
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cancelButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cancelButton.Location = new System.Drawing.Point(469, 389);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(214, 66);
+            this.cancelButton.TabIndex = 13;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // AddShopForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(724, 486);
-            this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.AddWorkingHoursTextBox);
+            this.ClientSize = new System.Drawing.Size(724, 479);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.addWorkingHoursTextBox);
             this.Controls.Add(this.AddWorkingHoursLabel);
-            this.Controls.Add(this.AddOwnershipTextBox);
+            this.Controls.Add(this.addOwnershipTextBox);
             this.Controls.Add(this.AddOwnershipLabel);
-            this.Controls.Add(this.AddSpecializationTextBox);
+            this.Controls.Add(this.addSpecializationTextBox);
             this.Controls.Add(this.AddSpecializalionLabel);
-            this.Controls.Add(this.AddPhoneTextBox);
+            this.Controls.Add(this.addPhoneTextBox);
             this.Controls.Add(this.AddTelephoneLabel);
-            this.Controls.Add(this.AddAddressTextBox);
+            this.Controls.Add(this.addAddressTextBox);
             this.Controls.Add(this.AddAddressLabel);
-            this.Controls.Add(this.AddNameTextBox);
+            this.Controls.Add(this.addNameTextBox);
             this.Controls.Add(this.AddNameLabel);
-            this.Controls.Add(this.AddShopButton);
+            this.Controls.Add(this.addShopButton);
             this.Name = "AddShopForm";
             this.Text = "AddShopForm";
             this.Load += new System.EventHandler(this.AddShopForm_Load);
@@ -200,19 +200,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Button AddShopButton;
+        private System.Windows.Forms.Button addShopButton;
         private System.Windows.Forms.Label AddNameLabel;
-        private System.Windows.Forms.TextBox AddNameTextBox;
+        private System.Windows.Forms.TextBox addNameTextBox;
         private System.Windows.Forms.Label AddAddressLabel;
-        private System.Windows.Forms.TextBox AddAddressTextBox;
+        private System.Windows.Forms.TextBox addAddressTextBox;
         private System.Windows.Forms.Label AddTelephoneLabel;
-        private System.Windows.Forms.TextBox AddPhoneTextBox;
+        private System.Windows.Forms.TextBox addPhoneTextBox;
         private System.Windows.Forms.Label AddSpecializalionLabel;
-        private System.Windows.Forms.TextBox AddSpecializationTextBox;
+        private System.Windows.Forms.TextBox addSpecializationTextBox;
         private System.Windows.Forms.Label AddOwnershipLabel;
-        private System.Windows.Forms.TextBox AddOwnershipTextBox;
+        private System.Windows.Forms.TextBox addOwnershipTextBox;
         private System.Windows.Forms.Label AddWorkingHoursLabel;
-        private System.Windows.Forms.TextBox AddWorkingHoursTextBox;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.TextBox addWorkingHoursTextBox;
+        private System.Windows.Forms.Button cancelButton;
     }
 }
