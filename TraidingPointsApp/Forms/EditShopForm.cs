@@ -41,16 +41,7 @@ namespace TraidingPointsApp
 
                 if (confirmResult == DialogResult.Yes)
                 {
-                    if (ValidateFields())
-                    {
-                        Shop.Name = editNameTextBox.Text;
-                        Shop.Address = editAddressTextBox.Text;
-                        Shop.Telephone = editPhoneTextBox.Text;
-                        Shop.Specialization = editSpecializationTextBox.Text;
-                        Shop.Ownership = editOwnershipTextBox.Text;
-                        Shop.WorkingHours = editWorkingHoursTextBox.Text;
-                        DialogResult = DialogResult.OK;
-                    }
+                    EditShop();
                 }
                 else if (confirmResult == DialogResult.No)
                 {
@@ -60,6 +51,11 @@ namespace TraidingPointsApp
         }
 
         private void editShopButton_Click(object sender, EventArgs e)
+        {
+            EditShop();
+        }
+
+        private void EditShop()
         {
             if (ValidateFields())
             {

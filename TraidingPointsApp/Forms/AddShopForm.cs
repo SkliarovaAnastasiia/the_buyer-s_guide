@@ -12,6 +12,8 @@ namespace TraidingPointsApp
         public AddShopForm()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += AddShopForm_KeyDown;
         }
         private void AddShopForm_Load(object sender, EventArgs e)
         {
@@ -23,9 +25,32 @@ namespace TraidingPointsApp
             this.DialogResult = DialogResult.Cancel;
         }
 
+        private void addWorkingHoursTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                AddShop();
+            }
+        }
+
+        private void AddShopForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddShop();
+            }
+        }
+
         private void addShopButton_Click(object sender, EventArgs e)
         {
-            if (ValidateFields()) 
+            
+            AddShop();
+        }
+
+        private void AddShop()
+        {
+            if (ValidateFields())
             {
                 Shop = new Shop
                 {
@@ -39,6 +64,7 @@ namespace TraidingPointsApp
                 this.DialogResult = DialogResult.OK;
             }
         }
+
         private bool ValidateFields()
         {
             if (addNameTextBox.Text.Length < 2)

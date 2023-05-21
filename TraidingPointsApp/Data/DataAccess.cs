@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.Json;
 using TraidingPointsApp.Models;
 
@@ -46,6 +45,11 @@ namespace TraidingPointsApp.Data
                 return new List<Shop>();
             }
         }
-        
+
+        public static void SaveTextToFile(string text, string filePath)
+        {
+            File.WriteAllText(filePath, text);
+        }
+
     }
 }

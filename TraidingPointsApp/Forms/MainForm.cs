@@ -3,7 +3,8 @@ using System.Windows.Forms;
 using TraidingPointsApp.Data;
 using TraidingPointsApp.Models;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
+using System.Text;
 
 namespace TraidingPointsApp
 {
@@ -16,9 +17,7 @@ namespace TraidingPointsApp
         {
             InitializeComponent();
             traidingPoints = new TraidingPoints();
-            //traidingPoints.GenTestData(50);
             shopBindingSource.DataSource = traidingPoints.Shops;
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -50,27 +49,30 @@ namespace TraidingPointsApp
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            traidingPoints.Shops.Clear();
-            shopBindingSource.Clear();
-            shopBindingSource.ResetBindings(true);
+            DialogResult result = MessageBox.Show("Are you sure that you want to clear the list of shops?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
+                traidingPoints.Shops.Clear();
+                shopBindingSource.Clear();
+                shopBindingSource.ResetBindings(true);
+            }
         }
 
         private void addShopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var addShopForm = new AddShopForm();
             var dialogRes = addShopForm.ShowDialog();
+
             if (dialogRes == DialogResult.OK)
             {
                 if (addShopForm.Shop != null) 
                 {
-                    //traidingPoints.Shops.Add(addShopForm.Shop);
                     traidingPoints.Shops.Insert(0, addShopForm.Shop);
                     shopBindingSource.ResetBindings(true);
                     traidingPoints.IsDirty = true;
                 }
             }
-
         }
 
         private void removeShopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,7 +145,6 @@ namespace TraidingPointsApp
         {
             List<Shop> result = traidingPoints.SearchShops(searchBox.Text.ToLower());
             shopBindingSource.DataSource = result;
-
         }
 
         private void searchBox_KeyDown(object sender, KeyEventArgs e)
@@ -164,31 +165,58 @@ namespace TraidingPointsApp
         private void showFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             favorites = DataAccess.LoadFavorites();
+
             if (favorites != null)
             {
                 shopBindingSource.DataSource = favorites;
             }
+
         }
 
         private void addToFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var currentShop = shopBindingSource.Current as Shop;
 
-            if (currentShop != null && !favorites.Contains(currentShop))
+            if (currentShop != null && !favorites.Any(shop =>
+                shop.Name == currentShop.Name &&
+                shop.Address == currentShop.Address &&
+                shop.Telephone == currentShop.Telephone &&
+                shop.Specialization == currentShop.Specialization &&
+                shop.Ownership == currentShop.Ownership &&
+                shop.WorkingHours == currentShop.WorkingHours))
             {
-                favorites.Add(currentShop);
+                favorites.Insert(0, currentShop);
                 DataAccess.SaveFavorites(favorites);
             }
         }
-
+        
         private void saveToFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            List<Shop> selectedShops = new List<Shop>();
+
+            foreach (var item in shopBindingSource)
+            {
+                var shop = item as Shop;
+                if (favorites.Contains(shop) && !selectedShops.Contains(shop))
+                {
+                    selectedShops.Add(shop);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var shop in selectedShops)
+            {
+                sb.AppendLine($"{shop.Name}\r\n{shop.Address}\r\n{shop.Telephone}\r\n{shop.Specialization}\n");
+            }
+
+            string shopText = sb.ToString();
+            DataAccess.SaveTextToFile(shopText, "FavoriteShops.txt");
         }
 
         private void removeFromFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to delete the current record?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Are you sure that you want to delete the current shop from favorites?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
