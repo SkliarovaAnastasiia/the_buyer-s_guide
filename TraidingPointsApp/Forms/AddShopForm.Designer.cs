@@ -144,9 +144,9 @@
             this.AddWorkingHoursLabel.AutoSize = true;
             this.AddWorkingHoursLabel.Location = new System.Drawing.Point(23, 316);
             this.AddWorkingHoursLabel.Name = "AddWorkingHoursLabel";
-            this.AddWorkingHoursLabel.Size = new System.Drawing.Size(154, 25);
+            this.AddWorkingHoursLabel.Size = new System.Drawing.Size(151, 25);
             this.AddWorkingHoursLabel.TabIndex = 11;
-            this.AddWorkingHoursLabel.Text = "Working Hours";
+            this.AddWorkingHoursLabel.Text = "Working hours";
             // 
             // addWorkingHoursTextBox
             // 

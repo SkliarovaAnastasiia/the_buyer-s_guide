@@ -44,7 +44,6 @@ namespace TraidingPointsApp
 
         private void addShopButton_Click(object sender, EventArgs e)
         {
-            
             AddShop();
         }
 
@@ -67,55 +66,56 @@ namespace TraidingPointsApp
 
         private bool ValidateFields()
         {
-            if (addNameTextBox.Text.Length < 2)
+            if (addNameTextBox.Text.Length < 2 && addNameTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Name' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Name' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addAddressTextBox.Text.Length < 2)
+            if (addAddressTextBox.Text.Length < 2 && addAddressTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Address' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Address' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addPhoneTextBox.Text.Length < 2)
+            if (addPhoneTextBox.Text.Length < 2 && addPhoneTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Telephone' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (!int.TryParse(addPhoneTextBox.Text, out _))
             {
-                MessageBox.Show("Поле 'Telephone' має містити цифрові значення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain only digital symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addSpecializationTextBox.Text.Length < 2)
+            if (addSpecializationTextBox.Text.Length < 2 && addSpecializationTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Specialization' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Specialization' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addOwnershipTextBox.Text.Length < 2)
+            if (addOwnershipTextBox.Text.Length < 2 && addOwnershipTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Ownership' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Ownership' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addWorkingHoursTextBox.Text.Length < 2)
+            if (addWorkingHoursTextBox.Text.Length < 2 && addWorkingHoursTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Working Hours' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Working hours' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (!IsValidWorkingHours(addWorkingHoursTextBox.Text))
             {
-                MessageBox.Show("Неприпустимий формат поля 'Working Hours'.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Working hours' field should be in the following format: opening hours:minutes-closing hours:minutes!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             return true;
+
         }
         private bool IsValidWorkingHours(string input)
         {

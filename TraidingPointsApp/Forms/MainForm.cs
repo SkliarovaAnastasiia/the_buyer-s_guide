@@ -22,7 +22,10 @@ namespace TraidingPointsApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            DataAccess.Load(traidingPoints);
+            shopBindingSource.ResetBindings(true);
+            shopBindingSource.DataSource = traidingPoints.Shops;
+            favorites = DataAccess.LoadFavorites();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -56,6 +59,7 @@ namespace TraidingPointsApp
                 traidingPoints.Shops.Clear();
                 shopBindingSource.Clear();
                 shopBindingSource.ResetBindings(true);
+                DataAccess.Save(traidingPoints);
             }
         }
 
@@ -71,21 +75,27 @@ namespace TraidingPointsApp
                     traidingPoints.Shops.Insert(0, addShopForm.Shop);
                     shopBindingSource.ResetBindings(true);
                     traidingPoints.IsDirty = true;
+                    DataAccess.Save(traidingPoints);
                 }
             }
         }
 
         private void removeShopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure that you want to delete the current shop?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             var currentShop = shopBindingSource.Current as Shop;
-            if (result == DialogResult.Yes)
-            {
-                shopBindingSource.RemoveCurrent();
-                traidingPoints.Shops.Remove(currentShop);
-                DataAccess.Save(traidingPoints);
-            }
 
+            if (currentShop != null && currentShop.Name != null)
+            {
+                DialogResult result = MessageBox.Show("Are you sure that you want to delete the current shop?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    shopBindingSource.RemoveCurrent();
+                    traidingPoints.Shops.Remove(currentShop);
+                    favorites.Remove(currentShop);
+                    DataAccess.Save(traidingPoints);
+                    DataAccess.SaveFavorites(favorites);
+                }
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -212,23 +222,6 @@ namespace TraidingPointsApp
 
             string shopText = sb.ToString();
             DataAccess.SaveTextToFile(shopText, "FavoriteShops.txt");
-        }
-
-        private void removeFromFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure that you want to delete the current shop from favorites?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                var currentShop = shopBindingSource.Current as Shop;
-
-                if (currentShop != null)
-                {
-                    shopBindingSource.RemoveCurrent(); 
-                    favorites.Remove(currentShop);
-                    DataAccess.SaveFavorites(favorites); 
-                }
-            }
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)

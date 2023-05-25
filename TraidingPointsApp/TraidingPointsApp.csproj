@@ -89,6 +89,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\AddShopForm.datasource" />
+    <None Include="Properties\DataSources\EditShopForm.datasource" />
     <None Include="Properties\DataSources\EnterForm.datasource" />
     <None Include="Properties\DataSources\MainForm.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />

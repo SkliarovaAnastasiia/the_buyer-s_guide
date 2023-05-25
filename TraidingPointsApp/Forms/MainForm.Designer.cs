@@ -51,7 +51,6 @@
             this.addToFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showFavoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToFavoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeFromFavoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
@@ -227,8 +226,7 @@
             this.favoriteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToFavoriteToolStripMenuItem,
             this.showFavoritesToolStripMenuItem,
-            this.saveToFavoritesToolStripMenuItem,
-            this.removeFromFavoritesToolStripMenuItem});
+            this.saveToFavoritesToolStripMenuItem});
             this.favoriteToolStripMenuItem.Name = "favoriteToolStripMenuItem";
             this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(160, 41);
             this.favoriteToolStripMenuItem.Text = "Favorite";
@@ -253,13 +251,6 @@
             this.saveToFavoritesToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
             this.saveToFavoritesToolStripMenuItem.Text = "Save";
             this.saveToFavoritesToolStripMenuItem.Click += new System.EventHandler(this.saveToFavoritesToolStripMenuItem_Click);
-            // 
-            // removeFromFavoritesToolStripMenuItem
-            // 
-            this.removeFromFavoritesToolStripMenuItem.Name = "removeFromFavoritesToolStripMenuItem";
-            this.removeFromFavoritesToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
-            this.removeFromFavoritesToolStripMenuItem.Text = "Remove";
-            this.removeFromFavoritesToolStripMenuItem.Click += new System.EventHandler(this.removeFromFavoritesToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -356,6 +347,5 @@
         private System.Windows.Forms.ToolStripMenuItem addToFavoriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showFavoritesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToFavoritesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeFromFavoritesToolStripMenuItem;
     }
 }

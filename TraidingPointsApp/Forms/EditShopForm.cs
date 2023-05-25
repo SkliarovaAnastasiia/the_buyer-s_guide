@@ -71,51 +71,51 @@ namespace TraidingPointsApp
 
         private bool ValidateFields()
         {
-            if (editNameTextBox.Text.Length < 2)
+            if (editNameTextBox.Text.Length < 2 && editNameTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Name' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Name' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editAddressTextBox.Text.Length < 2)
+            if (editAddressTextBox.Text.Length < 2 && editAddressTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Address' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Address' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editPhoneTextBox.Text.Length < 2)
+            if (editPhoneTextBox.Text.Length < 2 && editPhoneTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Telephone' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (!int.TryParse(editPhoneTextBox.Text, out _))
             {
-                MessageBox.Show("Поле 'Telephone' має містити цифрові значення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain only digital symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editSpecializationTextBox.Text.Length < 2)
+            if (editSpecializationTextBox.Text.Length < 2 && editSpecializationTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Specialization' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Specialization' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editOwnershipTextBox.Text.Length < 2)
+            if (editOwnershipTextBox.Text.Length < 2 && editOwnershipTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Ownership' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Ownership' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editWorkingHoursTextBox.Text.Length < 2)
+            if (editWorkingHoursTextBox.Text.Length < 2 && editWorkingHoursTextBox.Text.Length < 100)
             {
-                MessageBox.Show("Поле 'Working Hours' має містити не менше 2 символів.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Working hours' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (!IsValidWorkingHours(editWorkingHoursTextBox.Text))
             {
-                MessageBox.Show("Неприпустимий формат поля 'Working Hours'.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Working hours' field should be in the following format: opening hours:minutes-closing hours:minutes!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
