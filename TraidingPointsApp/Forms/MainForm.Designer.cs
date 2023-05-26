@@ -30,13 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telephoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.specializationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ownershipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.workingHoursDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shopBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,10 +47,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telephoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.specializationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ownershipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.workingHoursDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shopBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shopBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.shopBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -83,58 +84,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // telephoneDataGridViewTextBoxColumn
-            // 
-            this.telephoneDataGridViewTextBoxColumn.DataPropertyName = "Telephone";
-            this.telephoneDataGridViewTextBoxColumn.HeaderText = "Telephone";
-            this.telephoneDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.telephoneDataGridViewTextBoxColumn.Name = "telephoneDataGridViewTextBoxColumn";
-            this.telephoneDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // specializationDataGridViewTextBoxColumn
-            // 
-            this.specializationDataGridViewTextBoxColumn.DataPropertyName = "Specialization";
-            this.specializationDataGridViewTextBoxColumn.HeaderText = "Specialization";
-            this.specializationDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.specializationDataGridViewTextBoxColumn.Name = "specializationDataGridViewTextBoxColumn";
-            this.specializationDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // ownershipDataGridViewTextBoxColumn
-            // 
-            this.ownershipDataGridViewTextBoxColumn.DataPropertyName = "Ownership";
-            this.ownershipDataGridViewTextBoxColumn.HeaderText = "Ownership";
-            this.ownershipDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.ownershipDataGridViewTextBoxColumn.Name = "ownershipDataGridViewTextBoxColumn";
-            this.ownershipDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // workingHoursDataGridViewTextBoxColumn
-            // 
-            this.workingHoursDataGridViewTextBoxColumn.DataPropertyName = "WorkingHours";
-            this.workingHoursDataGridViewTextBoxColumn.HeaderText = "WorkingHours";
-            this.workingHoursDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.workingHoursDataGridViewTextBoxColumn.Name = "workingHoursDataGridViewTextBoxColumn";
-            this.workingHoursDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // shopBindingSource
-            // 
-            this.shopBindingSource.DataSource = typeof(TraidingPointsApp.Models.Shop);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -146,7 +95,7 @@
             this.favoriteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1353, 45);
+            this.menuStrip1.Size = new System.Drawing.Size(1353, 49);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -195,29 +144,30 @@
             this.shopToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addShopToolStripMenuItem,
             this.removeShopToolStripMenuItem,
-            this.editShopToolStripMenuItem});
+            this.editShopToolStripMenuItem,
+            this.showToolStripMenuItem});
             this.shopToolStripMenuItem.Name = "shopToolStripMenuItem";
-            this.shopToolStripMenuItem.Size = new System.Drawing.Size(116, 41);
-            this.shopToolStripMenuItem.Text = "Shop";
+            this.shopToolStripMenuItem.Size = new System.Drawing.Size(133, 41);
+            this.shopToolStripMenuItem.Text = "Shops";
             // 
             // addShopToolStripMenuItem
             // 
             this.addShopToolStripMenuItem.Name = "addShopToolStripMenuItem";
-            this.addShopToolStripMenuItem.Size = new System.Drawing.Size(275, 46);
+            this.addShopToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
             this.addShopToolStripMenuItem.Text = "Add";
             this.addShopToolStripMenuItem.Click += new System.EventHandler(this.addShopToolStripMenuItem_Click);
             // 
             // removeShopToolStripMenuItem
             // 
             this.removeShopToolStripMenuItem.Name = "removeShopToolStripMenuItem";
-            this.removeShopToolStripMenuItem.Size = new System.Drawing.Size(275, 46);
+            this.removeShopToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
             this.removeShopToolStripMenuItem.Text = "Remove";
             this.removeShopToolStripMenuItem.Click += new System.EventHandler(this.removeShopToolStripMenuItem_Click);
             // 
             // editShopToolStripMenuItem
             // 
             this.editShopToolStripMenuItem.Name = "editShopToolStripMenuItem";
-            this.editShopToolStripMenuItem.Size = new System.Drawing.Size(275, 46);
+            this.editShopToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
             this.editShopToolStripMenuItem.Text = "Edit";
             this.editShopToolStripMenuItem.Click += new System.EventHandler(this.editShopToolStripMenuItem_Click);
             // 
@@ -294,6 +244,65 @@
             this.searchBox.TabIndex = 0;
             this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // telephoneDataGridViewTextBoxColumn
+            // 
+            this.telephoneDataGridViewTextBoxColumn.DataPropertyName = "Telephone";
+            this.telephoneDataGridViewTextBoxColumn.HeaderText = "Telephone";
+            this.telephoneDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.telephoneDataGridViewTextBoxColumn.Name = "telephoneDataGridViewTextBoxColumn";
+            this.telephoneDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // specializationDataGridViewTextBoxColumn
+            // 
+            this.specializationDataGridViewTextBoxColumn.DataPropertyName = "Specialization";
+            this.specializationDataGridViewTextBoxColumn.HeaderText = "Specialization";
+            this.specializationDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.specializationDataGridViewTextBoxColumn.Name = "specializationDataGridViewTextBoxColumn";
+            this.specializationDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // ownershipDataGridViewTextBoxColumn
+            // 
+            this.ownershipDataGridViewTextBoxColumn.DataPropertyName = "Ownership";
+            this.ownershipDataGridViewTextBoxColumn.HeaderText = "Ownership";
+            this.ownershipDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.ownershipDataGridViewTextBoxColumn.Name = "ownershipDataGridViewTextBoxColumn";
+            this.ownershipDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // workingHoursDataGridViewTextBoxColumn
+            // 
+            this.workingHoursDataGridViewTextBoxColumn.DataPropertyName = "WorkingHours";
+            this.workingHoursDataGridViewTextBoxColumn.HeaderText = "WorkingHours";
+            this.workingHoursDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.workingHoursDataGridViewTextBoxColumn.Name = "workingHoursDataGridViewTextBoxColumn";
+            this.workingHoursDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // shopBindingSource
+            // 
+            this.shopBindingSource.DataSource = typeof(TraidingPointsApp.Models.Shop);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -310,11 +319,11 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shopBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.shopBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,5 +356,6 @@
         private System.Windows.Forms.ToolStripMenuItem addToFavoriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showFavoritesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToFavoritesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
     }
 }

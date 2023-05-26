@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TraidingPointsApp.Data;
 using TraidingPointsApp.Models;
 
 namespace TraidingPointsApp
@@ -9,6 +12,7 @@ namespace TraidingPointsApp
     public partial class EditShopForm : Form
     {
         public Shop Shop;
+
         public EditShopForm(Shop shop)
         {
             InitializeComponent();
@@ -37,13 +41,13 @@ namespace TraidingPointsApp
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DialogResult confirmResult = MessageBox.Show("Do you want to save changes?", "Edit confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Do you want to save changes?", "Edit confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-                if (confirmResult == DialogResult.Yes)
+                if (result == DialogResult.Yes)
                 {
                     EditShop();
                 }
-                else if (confirmResult == DialogResult.No)
+                else if (result == DialogResult.No)
                 {
                     this.DialogResult = DialogResult.Cancel;
                 }
@@ -52,7 +56,12 @@ namespace TraidingPointsApp
 
         private void editShopButton_Click(object sender, EventArgs e)
         {
-            EditShop();
+            DialogResult result = MessageBox.Show("Do you want to save changes?", "Edit confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                EditShop();
+            }
         }
 
         private void EditShop()

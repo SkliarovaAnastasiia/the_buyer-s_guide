@@ -22,6 +22,7 @@ namespace TraidingPointsApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            dataGridView1.ReadOnly = true;
             DataAccess.Load(traidingPoints);
             shopBindingSource.ResetBindings(true);
             shopBindingSource.DataSource = traidingPoints.Shops;
@@ -52,15 +53,26 @@ namespace TraidingPointsApp
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure that you want to clear the list of shops?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+             DialogResult result = MessageBox.Show("Are you sure that you want to clear the list of shops?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {
-                traidingPoints.Shops.Clear();
-                shopBindingSource.Clear();
-                shopBindingSource.ResetBindings(true);
-                DataAccess.Save(traidingPoints);
-            }
+             if (result == DialogResult.Yes)
+             {
+                if (traidingPoints.IsFavoritesDisplayed)
+                {
+                    traidingPoints.Favorites.Clear();
+                    shopBindingSource.Clear();
+                    shopBindingSource.ResetBindings(true);
+                    DataAccess.SaveFavorites(favorites);
+                }
+
+                else
+                {
+                    traidingPoints.Shops.Clear();
+                    shopBindingSource.Clear();
+                    shopBindingSource.ResetBindings(true);
+                    DataAccess.Save(traidingPoints);
+                }
+             }
         }
 
         private void addShopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,7 +96,7 @@ namespace TraidingPointsApp
         {
             var currentShop = shopBindingSource.Current as Shop;
 
-            if (currentShop != null && currentShop.Name != null)
+            if (currentShop != null )
             {
                 DialogResult result = MessageBox.Show("Are you sure that you want to delete the current shop?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
@@ -125,6 +137,7 @@ namespace TraidingPointsApp
             {
                 shopBindingSource.ResetBindings(true);
                 traidingPoints.IsDirty = true;
+                DataAccess.Save(traidingPoints);
             }
         }
 
@@ -137,7 +150,9 @@ namespace TraidingPointsApp
         {
             if (!traidingPoints.IsDirty)
                 return;
+
             var res = MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNoCancel);
+
             switch (res)
             {
                 case DialogResult.Yes:
@@ -150,11 +165,27 @@ namespace TraidingPointsApp
                     break;
             }
         }
-        
+
+        private void Search()
+        {
+            List<Shop> result;
+
+            if (traidingPoints.IsFavoritesDisplayed)
+            {
+                result = traidingPoints.SearchFavoriteShops(searchBox.Text.ToLower());
+            }
+
+            else
+            {
+                result = traidingPoints.SearchShops(searchBox.Text.ToLower());
+            }
+             
+            shopBindingSource.DataSource = result;
+        }
+
         private void searchButton_Click(object sender, EventArgs e)
         {
-            List<Shop> result = traidingPoints.SearchShops(searchBox.Text.ToLower());
-            shopBindingSource.DataSource = result;
+            Search();
         }
 
         private void searchBox_KeyDown(object sender, KeyEventArgs e)
@@ -162,8 +193,7 @@ namespace TraidingPointsApp
             if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
-                List<Shop> result = traidingPoints.SearchShops(searchBox.Text.ToLower());
-                shopBindingSource.DataSource = result;
+                Search();
             }
         }
 
@@ -179,21 +209,22 @@ namespace TraidingPointsApp
             if (favorites != null)
             {
                 shopBindingSource.DataSource = favorites;
+                traidingPoints.IsFavoritesDisplayed = true;
             }
-
         }
 
         private void addToFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var currentShop = shopBindingSource.Current as Shop;
 
-            if (currentShop != null && !favorites.Any(shop =>
-                shop.Name == currentShop.Name &&
-                shop.Address == currentShop.Address &&
-                shop.Telephone == currentShop.Telephone &&
-                shop.Specialization == currentShop.Specialization &&
-                shop.Ownership == currentShop.Ownership &&
-                shop.WorkingHours == currentShop.WorkingHours))
+            if (currentShop != null && currentShop.Name != null &&
+                !favorites.Any(shop =>
+                    shop.Name == currentShop.Name &&
+                    shop.Address == currentShop.Address &&
+                    shop.Telephone == currentShop.Telephone &&
+                    shop.Specialization == currentShop.Specialization &&
+                    shop.Ownership == currentShop.Ownership &&
+                    shop.WorkingHours == currentShop.WorkingHours))
             {
                 favorites.Insert(0, currentShop);
                 DataAccess.SaveFavorites(favorites);
@@ -202,20 +233,21 @@ namespace TraidingPointsApp
         
         private void saveToFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<Shop> selectedShops = new List<Shop>();
+            List<Shop> favoriteShops = new List<Shop>();
 
             foreach (var item in shopBindingSource)
             {
                 var shop = item as Shop;
-                if (favorites.Contains(shop) && !selectedShops.Contains(shop))
+
+                if (favorites.Contains(shop) && !favoriteShops.Contains(shop))
                 {
-                    selectedShops.Add(shop);
+                    favoriteShops.Add(shop);
                 }
             }
 
             StringBuilder sb = new StringBuilder();
 
-            foreach (var shop in selectedShops)
+            foreach (var shop in favoriteShops)
             {
                 sb.AppendLine($"{shop.Name}\r\n{shop.Address}\r\n{shop.Telephone}\r\n{shop.Specialization}\n");
             }
@@ -227,6 +259,13 @@ namespace TraidingPointsApp
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
             searchBox.KeyDown += searchBox_KeyDown;
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataAccess.Load(traidingPoints);
+            shopBindingSource.ResetBindings(true);
+            shopBindingSource.DataSource = traidingPoints.Shops;
         }
     }
 }
