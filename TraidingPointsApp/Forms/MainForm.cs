@@ -66,13 +66,6 @@ namespace TraidingPointsApp
 
              if (result == DialogResult.Yes)
              {
-                //if (traidingPoints.IsFavoritesDisplayed)
-                //{
-                //    traidingPoints.Favorites.Clear();
-                //    shopBindingSource.Clear();
-                //    shopBindingSource.ResetBindings(true);
-                //    DataAccess.SaveFavorites(favorites);
-                //}
                     traidingPoints.Shops.Clear();
                     shopBindingSource.Clear();
                     shopBindingSource.ResetBindings(true);
@@ -369,11 +362,16 @@ namespace TraidingPointsApp
                 return;
             }
 
-            traidingPoints.Favorites.Clear();
-            shopBindingSource.Clear();
-            shopBindingSource.ResetBindings(true);
-            traidingPoints.IsFavoritesDirty = true;
-            //DataAccess.SaveFavorites(favorites);
+            DialogResult result = MessageBox.Show("Are you sure that you want to delete all favorite shops?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                traidingPoints.Favorites.Clear();
+                shopBindingSource.Clear();
+                shopBindingSource.ResetBindings(true);
+                traidingPoints.IsFavoritesDirty = true;
+                //DataAccess.SaveFavorites(favorites);
+            }
         }
     }
 }
