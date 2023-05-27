@@ -18,6 +18,8 @@ namespace TraidingPointsApp.Models
 
         public bool IsFavoritesDisplayed { get; set; }
 
+        public bool IsFavoritesDirty { get; set; }
+
         //public void GenTestData(int n)
         //{
         //    Shops = new List<Shop>();

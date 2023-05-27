@@ -12,6 +12,7 @@ namespace TraidingPointsApp
     public partial class EditShopForm : Form
     {
         public Shop Shop;
+        TraidingPoints traidingPoints;
 
         public EditShopForm(Shop shop)
         {
@@ -47,6 +48,7 @@ namespace TraidingPointsApp
                 {
                     EditShop();
                 }
+
                 else if (result == DialogResult.No)
                 {
                     this.DialogResult = DialogResult.Cancel;
@@ -129,7 +131,6 @@ namespace TraidingPointsApp
             }
 
             return true;
-
         }
         private bool IsValidWorkingHours(string input)
         {
