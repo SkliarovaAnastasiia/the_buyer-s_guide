@@ -8,10 +8,13 @@ namespace TraidingPointsApp
     public partial class AddShopForm : Form
     {
         public Shop Shop;
-      
-        public AddShopForm()
+        TraidingPoints traidingPoints;
+
+        public AddShopForm(TraidingPoints pointsList)
         {
             InitializeComponent();
+            this.ControlBox = false;
+            this.traidingPoints = pointsList;
             this.KeyPreview = true;
             this.KeyDown += AddShopForm_KeyDown;
         }
@@ -60,51 +63,52 @@ namespace TraidingPointsApp
                     Ownership = addOwnershipTextBox.Text,
                     WorkingHours = addWorkingHoursTextBox.Text
                 };
+
                 this.DialogResult = DialogResult.OK;
             }
         }
 
         private bool ValidateFields()
         {
-            if (addNameTextBox.Text.Length < 2 && addNameTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(addNameTextBox.Text) || addNameTextBox.Text.Length < 2 || addNameTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Name' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Name' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addAddressTextBox.Text.Length < 2 && addAddressTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(addAddressTextBox.Text) || addAddressTextBox.Text.Length < 2 || addAddressTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Address' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Address' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addPhoneTextBox.Text.Length < 2 && addPhoneTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(addPhoneTextBox.Text) || addPhoneTextBox.Text.Length < 2 || addPhoneTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Telephone' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (!int.TryParse(addPhoneTextBox.Text, out _))
             {
-                MessageBox.Show("The 'Telephone' field must contain only digital symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain only numeric characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addSpecializationTextBox.Text.Length < 2 && addSpecializationTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(addSpecializationTextBox.Text) || addSpecializationTextBox.Text.Length < 2 || addSpecializationTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Specialization' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Specialization' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addOwnershipTextBox.Text.Length < 2 && addOwnershipTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(addOwnershipTextBox.Text) || addOwnershipTextBox.Text.Length < 2 || addOwnershipTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Ownership' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Ownership' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (addWorkingHoursTextBox.Text.Length < 2 && addWorkingHoursTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(addWorkingHoursTextBox.Text) || addWorkingHoursTextBox.Text.Length < 2 || addWorkingHoursTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Working hours' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Working hours' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -115,13 +119,18 @@ namespace TraidingPointsApp
             }
 
             return true;
-
         }
+
         private bool IsValidWorkingHours(string input)
         {
             string pattern = @"^(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})$";
 
             return Regex.IsMatch(input, pattern);
+        }
+
+        private void AddShopForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }

@@ -45,11 +45,11 @@
             this.addToFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showFavoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToFavoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeFromFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
-            this.removeFromFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telephoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,10 +65,13 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
@@ -80,9 +83,10 @@
             this.dataGridView1.DataSource = this.shopBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(46, 385);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 42;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1245, 463);
+            this.dataGridView1.Size = new System.Drawing.Size(1178, 445);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -97,7 +101,7 @@
             this.favoriteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1353, 45);
+            this.menuStrip1.Size = new System.Drawing.Size(1274, 49);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -110,7 +114,7 @@
             this.clearToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(92, 41);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(92, 45);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
@@ -149,7 +153,7 @@
             this.editShopToolStripMenuItem,
             this.showToolStripMenuItem});
             this.shopToolStripMenuItem.Name = "shopToolStripMenuItem";
-            this.shopToolStripMenuItem.Size = new System.Drawing.Size(133, 41);
+            this.shopToolStripMenuItem.Size = new System.Drawing.Size(133, 45);
             this.shopToolStripMenuItem.Text = "Shops";
             // 
             // addShopToolStripMenuItem
@@ -189,29 +193,43 @@
             this.removeFromFavoriteToolStripMenuItem,
             this.removeAllToolStripMenuItem});
             this.favoriteToolStripMenuItem.Name = "favoriteToolStripMenuItem";
-            this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(177, 41);
+            this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(177, 45);
             this.favoriteToolStripMenuItem.Text = "Favorites";
             // 
             // addToFavoriteToolStripMenuItem
             // 
             this.addToFavoriteToolStripMenuItem.Name = "addToFavoriteToolStripMenuItem";
-            this.addToFavoriteToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
+            this.addToFavoriteToolStripMenuItem.Size = new System.Drawing.Size(320, 46);
             this.addToFavoriteToolStripMenuItem.Text = "Add";
             this.addToFavoriteToolStripMenuItem.Click += new System.EventHandler(this.addToFavoriteToolStripMenuItem_Click);
             // 
             // showFavoritesToolStripMenuItem
             // 
             this.showFavoritesToolStripMenuItem.Name = "showFavoritesToolStripMenuItem";
-            this.showFavoritesToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
+            this.showFavoritesToolStripMenuItem.Size = new System.Drawing.Size(320, 46);
             this.showFavoritesToolStripMenuItem.Text = "Show";
             this.showFavoritesToolStripMenuItem.Click += new System.EventHandler(this.showFavoritesToolStripMenuItem_Click);
             // 
             // saveToFavoritesToolStripMenuItem
             // 
             this.saveToFavoritesToolStripMenuItem.Name = "saveToFavoritesToolStripMenuItem";
-            this.saveToFavoritesToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
+            this.saveToFavoritesToolStripMenuItem.Size = new System.Drawing.Size(320, 46);
             this.saveToFavoritesToolStripMenuItem.Text = "Save";
             this.saveToFavoritesToolStripMenuItem.Click += new System.EventHandler(this.saveToFavoritesToolStripMenuItem_Click);
+            // 
+            // removeFromFavoriteToolStripMenuItem
+            // 
+            this.removeFromFavoriteToolStripMenuItem.Name = "removeFromFavoriteToolStripMenuItem";
+            this.removeFromFavoriteToolStripMenuItem.Size = new System.Drawing.Size(320, 46);
+            this.removeFromFavoriteToolStripMenuItem.Text = "Remove";
+            this.removeFromFavoriteToolStripMenuItem.Click += new System.EventHandler(this.removeFromFavoriteToolStripMenuItem_Click);
+            // 
+            // removeAllToolStripMenuItem
+            // 
+            this.removeAllToolStripMenuItem.Name = "removeAllToolStripMenuItem";
+            this.removeAllToolStripMenuItem.Size = new System.Drawing.Size(320, 46);
+            this.removeAllToolStripMenuItem.Text = "Remove all";
+            this.removeAllToolStripMenuItem.Click += new System.EventHandler(this.removeAllToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -222,7 +240,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(46, 93);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1245, 241);
+            this.groupBox1.Size = new System.Drawing.Size(1178, 241);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
@@ -238,7 +256,7 @@
             this.searchButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.searchButton.Location = new System.Drawing.Point(517, 125);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(217, 77);
+            this.searchButton.Size = new System.Drawing.Size(150, 77);
             this.searchButton.TabIndex = 2;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = false;
@@ -251,23 +269,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBox.Location = new System.Drawing.Point(115, 50);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(1024, 38);
+            this.searchBox.Size = new System.Drawing.Size(957, 38);
             this.searchBox.TabIndex = 0;
             this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
-            // 
-            // removeFromFavoriteToolStripMenuItem
-            // 
-            this.removeFromFavoriteToolStripMenuItem.Name = "removeFromFavoriteToolStripMenuItem";
-            this.removeFromFavoriteToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
-            this.removeFromFavoriteToolStripMenuItem.Text = "Remove";
-            this.removeFromFavoriteToolStripMenuItem.Click += new System.EventHandler(this.removeFromFavoriteToolStripMenuItem_Click);
-            // 
-            // removeAllToolStripMenuItem
-            // 
-            this.removeAllToolStripMenuItem.Name = "removeAllToolStripMenuItem";
-            this.removeAllToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
-            this.removeAllToolStripMenuItem.Text = "Remove all";
-            this.removeAllToolStripMenuItem.Click += new System.EventHandler(this.removeAllToolStripMenuItem_Click);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -275,6 +279,7 @@
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 200;
             // 
             // addressDataGridViewTextBoxColumn
@@ -283,6 +288,7 @@
             this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
             this.addressDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             this.addressDataGridViewTextBoxColumn.Width = 200;
             // 
             // telephoneDataGridViewTextBoxColumn
@@ -291,6 +297,7 @@
             this.telephoneDataGridViewTextBoxColumn.HeaderText = "Telephone";
             this.telephoneDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.telephoneDataGridViewTextBoxColumn.Name = "telephoneDataGridViewTextBoxColumn";
+            this.telephoneDataGridViewTextBoxColumn.ReadOnly = true;
             this.telephoneDataGridViewTextBoxColumn.Width = 200;
             // 
             // specializationDataGridViewTextBoxColumn
@@ -299,6 +306,7 @@
             this.specializationDataGridViewTextBoxColumn.HeaderText = "Specialization";
             this.specializationDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.specializationDataGridViewTextBoxColumn.Name = "specializationDataGridViewTextBoxColumn";
+            this.specializationDataGridViewTextBoxColumn.ReadOnly = true;
             this.specializationDataGridViewTextBoxColumn.Width = 200;
             // 
             // ownershipDataGridViewTextBoxColumn
@@ -307,6 +315,7 @@
             this.ownershipDataGridViewTextBoxColumn.HeaderText = "Ownership";
             this.ownershipDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.ownershipDataGridViewTextBoxColumn.Name = "ownershipDataGridViewTextBoxColumn";
+            this.ownershipDataGridViewTextBoxColumn.ReadOnly = true;
             this.ownershipDataGridViewTextBoxColumn.Width = 200;
             // 
             // workingHoursDataGridViewTextBoxColumn
@@ -315,6 +324,7 @@
             this.workingHoursDataGridViewTextBoxColumn.HeaderText = "WorkingHours";
             this.workingHoursDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.workingHoursDataGridViewTextBoxColumn.Name = "workingHoursDataGridViewTextBoxColumn";
+            this.workingHoursDataGridViewTextBoxColumn.ReadOnly = true;
             this.workingHoursDataGridViewTextBoxColumn.Width = 200;
             // 
             // shopBindingSource
@@ -326,12 +336,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1353, 1037);
+            this.ClientSize = new System.Drawing.Size(1274, 1129);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(1300, 1200);
+            this.MinimumSize = new System.Drawing.Size(1300, 1200);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);

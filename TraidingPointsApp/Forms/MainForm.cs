@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.Xml.Linq;
+using System.Diagnostics;
 
 namespace TraidingPointsApp
 {
@@ -53,6 +54,22 @@ namespace TraidingPointsApp
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (traidingPoints.IsFavoritesDirty == true)
+            {
+                var res = MessageBox.Show("Do you want to save changes in favorite trading points list?", "", MessageBoxButtons.YesNo);
+
+                switch (res)
+                {
+                    case DialogResult.Yes:
+                        DataAccess.SaveFavorites(favorites);
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+
+                traidingPoints.IsFavoritesDirty = false;
+            }
+
             DataAccess.Load(traidingPoints);
             traidingPoints.IsFavoritesDisplayed = false;
             shopBindingSource.ResetBindings(true);
@@ -61,34 +78,20 @@ namespace TraidingPointsApp
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (traidingPoints.IsFavoritesDisplayed)
+            if (traidingPoints.IsFavoritesDisplayed || traidingPoints.Shops.Count == 0)
             {
                 return;
             }
 
             DialogResult result = MessageBox.Show("Are you sure that you want to clear the list of shops?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-             if (result == DialogResult.Yes)
-             {
+            if (result == DialogResult.Yes)
+            {
                     traidingPoints.Shops.Clear();
                     shopBindingSource.Clear();
                     shopBindingSource.ResetBindings(true);
-                    DataAccess.Save(traidingPoints);
-             }
-        }
-
-        private bool ShopExists(Shop shop)
-        {
-            string name = shop.Name.ToLower();
-            string address = shop.Address.ToLower();
-
-            return traidingPoints.Shops.Exists(existingShop =>
-            {
-                string existingName = existingShop.Name.ToLower();
-                string existingAddress = existingShop.Address.ToLower();
-
-                return existingName == name && existingAddress == address;
-            });
+                    traidingPoints.IsDirty = true;
+            }
         }
 
         private void addShopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -98,19 +101,13 @@ namespace TraidingPointsApp
                 return;
             }
 
-            var addShopForm = new AddShopForm();
+            var addShopForm = new AddShopForm(traidingPoints);
             var dialogRes = addShopForm.ShowDialog();
 
             if (dialogRes == DialogResult.OK)
             {
                 if (addShopForm.Shop != null) 
                 {
-                    if (ShopExists(addShopForm.Shop))
-                    {
-                        MessageBox.Show("Shop with the same name and address already exists!", "Duplicate Shop", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
                     traidingPoints.Shops.Insert(0, addShopForm.Shop);
                     shopBindingSource.ResetBindings(true);
                     traidingPoints.IsDirty = true;
@@ -144,21 +141,24 @@ namespace TraidingPointsApp
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!traidingPoints.IsDirty && !traidingPoints.IsFavoritesDirty)
-                return;
+                Close();
 
-            var res = MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNo);
-
-            switch (res)
+            else
             {
-                case DialogResult.Yes:
-                    DataAccess.Save(traidingPoints);
-                    DataAccess.SaveFavorites(favorites);
-                    break;
-                case DialogResult.No:
-                    break;
-            }
+                var res = MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNo);
 
-            Close();
+                switch (res)
+                {
+                    case DialogResult.Yes:
+                        DataAccess.Save(traidingPoints);
+                        DataAccess.SaveFavorites(favorites);
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+
+                Close();
+            }
         }
 
         private void editShopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -183,15 +183,9 @@ namespace TraidingPointsApp
             }
 
             EditShopForm editShopForm = new EditShopForm(selectedShop);
-
+            
             if (editShopForm.ShowDialog() == DialogResult.OK)
             {
-                if (ShopExists(editShopForm.Shop))
-                {
-                    MessageBox.Show("Shop with the same name and address already exists!", "Duplicate Shop", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 shopBindingSource.ResetBindings(true);
                 traidingPoints.IsDirty = true;
             }
@@ -415,7 +409,6 @@ namespace TraidingPointsApp
                 shopBindingSource.Clear();
                 shopBindingSource.ResetBindings(true);
                 traidingPoints.IsFavoritesDirty = true;
-                //DataAccess.SaveFavorites(favorites);
             }
         }
     }

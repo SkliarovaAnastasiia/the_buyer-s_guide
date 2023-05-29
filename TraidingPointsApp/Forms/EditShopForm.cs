@@ -18,6 +18,7 @@ namespace TraidingPointsApp
         public EditShopForm(Shop shop)
         {
             InitializeComponent();
+            this.ControlBox = false;
             Shop = shop;
             editNameTextBox.Text = shop.Name;
             editAddressTextBox.Text = shop.Address;
@@ -43,85 +44,101 @@ namespace TraidingPointsApp
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DialogResult result = MessageBox.Show("Do you want to save changes?", "Edit confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+                if (ValidateFields())
                 {
-                    EditShop();
-                }
+                    DialogResult result = MessageBox.Show("Do you want to save changes?", "Edit confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-                else if (result == DialogResult.No)
-                {
-                    this.DialogResult = DialogResult.Cancel;
+                    if (result == DialogResult.Yes)
+                    {
+                        Shop.Name = editNameTextBox.Text;
+                        Shop.Address = editAddressTextBox.Text;
+                        Shop.Telephone = editPhoneTextBox.Text;
+                        Shop.Specialization = editSpecializationTextBox.Text;
+                        Shop.Ownership = editOwnershipTextBox.Text;
+                        Shop.WorkingHours = editWorkingHoursTextBox.Text;
+
+                        DialogResult = DialogResult.OK;
+                    }
+
+                    if (result == DialogResult.No)
+                    {
+                        this.Close();
+                    }
                 }
             }
         }
 
         private void editShopButton_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Do you want to save changes?", "Edit confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            if (ValidateFields())
             {
-                EditShop();
+                DialogResult result = MessageBox.Show("Do you want to save changes?", "Edit confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    Shop.Name = editNameTextBox.Text;
+                    Shop.Address = editAddressTextBox.Text;
+                    Shop.Telephone = editPhoneTextBox.Text;
+                    Shop.Specialization = editSpecializationTextBox.Text;
+                    Shop.Ownership = editOwnershipTextBox.Text;
+                    Shop.WorkingHours = editWorkingHoursTextBox.Text;
+
+                    DialogResult = DialogResult.OK;
+                }
+
+                if (result == DialogResult.No)
+                {
+                    this.Close();
+                }
             }
         }
 
         private void EditShop()
         {
-            if (ValidateFields())
-            {
-                Shop.Name = editNameTextBox.Text;
-                Shop.Address = editAddressTextBox.Text;
-                Shop.Telephone = editPhoneTextBox.Text;
-                Shop.Specialization = editSpecializationTextBox.Text;
-                Shop.Ownership = editOwnershipTextBox.Text;
-                Shop.WorkingHours = editWorkingHoursTextBox.Text;
-                DialogResult = DialogResult.OK;
-            }
+
         }
 
         private bool ValidateFields()
         {
-            if (editNameTextBox.Text.Length < 2 && editNameTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(editNameTextBox.Text) || editNameTextBox.Text.Length < 2 || editNameTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Name' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Name' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editAddressTextBox.Text.Length < 2 && editAddressTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(editAddressTextBox.Text) || editAddressTextBox.Text.Length < 2 || editAddressTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Address' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Address' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editPhoneTextBox.Text.Length < 2 && editPhoneTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(editPhoneTextBox.Text) || editPhoneTextBox.Text.Length < 2 || editPhoneTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Telephone' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (!int.TryParse(editPhoneTextBox.Text, out _))
             {
-                MessageBox.Show("The 'Telephone' field must contain only digital symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain only numeric characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editSpecializationTextBox.Text.Length < 2 && editSpecializationTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(editSpecializationTextBox.Text) || editSpecializationTextBox.Text.Length < 2 || editSpecializationTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Specialization' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Specialization' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editOwnershipTextBox.Text.Length < 2 && editOwnershipTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(editOwnershipTextBox.Text) || editOwnershipTextBox.Text.Length < 2 || editOwnershipTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Ownership' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Ownership' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (editWorkingHoursTextBox.Text.Length < 2 && editWorkingHoursTextBox.Text.Length < 100)
+            if (string.IsNullOrWhiteSpace(editWorkingHoursTextBox.Text) || editWorkingHoursTextBox.Text.Length < 2 || editWorkingHoursTextBox.Text.Length > 100)
             {
-                MessageBox.Show("The 'Working hours' field must contain from 2 to 100 symbols!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Working hours' field must contain from 2 to 100 non-empty characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -133,11 +150,17 @@ namespace TraidingPointsApp
 
             return true;
         }
+
         private bool IsValidWorkingHours(string input)
         {
             string pattern = @"^(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})$";
 
             return Regex.IsMatch(input, pattern);
+        }
+
+        private void EditShopForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
         }
     }
 }
