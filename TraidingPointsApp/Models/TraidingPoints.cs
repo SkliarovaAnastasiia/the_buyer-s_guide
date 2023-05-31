@@ -53,23 +53,5 @@ namespace TraidingPointsApp.Models
 
             return result;
         }
-
-        //internal List<Shop> SearchFavoriteShops(string line)
-        //{
-        //    List<Shop> result = new List<Shop>();
-        //    var t = line.ToLower();
-
-        //    foreach (Shop shop in Favorites)
-        //    {
-        //        if (shop.Name != null && shop.Name.ToLower().IndexOf(t) > -1 ||
-        // shop.Specialization != null && shop.Specialization.ToLower().IndexOf(t) > -1 ||
-        // shop.Address != null && shop.Address.ToLower().IndexOf(t) > -1)
-        //        {
-        //            result.Add(shop);
-        //        }
-        //    }
-
-        //    return result;
-        //}
     }
 }

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using TraidingPointsApp.Data;
 using TraidingPointsApp.Models;
 
 namespace TraidingPointsApp
@@ -13,8 +9,7 @@ namespace TraidingPointsApp
     public partial class EditShopForm : Form
     {
         public Shop Shop;
-        TraidingPoints traidingPoints;
-
+   
         public EditShopForm(Shop shop)
         {
             InitializeComponent();
