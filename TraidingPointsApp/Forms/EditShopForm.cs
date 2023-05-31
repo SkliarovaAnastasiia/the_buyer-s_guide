@@ -93,11 +93,6 @@ namespace TraidingPointsApp
             }
         }
 
-        private void EditShop()
-        {
-
-        }
-
         private bool ValidateFields()
         {
             if (string.IsNullOrWhiteSpace(editNameTextBox.Text) || editNameTextBox.Text.Length < 2 || editNameTextBox.Text.Length > 100)
