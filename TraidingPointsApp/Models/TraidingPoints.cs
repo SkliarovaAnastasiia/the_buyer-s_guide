@@ -15,7 +15,6 @@ namespace TraidingPointsApp.Models
         public List<Shop> Favorites { get; set; }
         public bool IsDirty { get; set; }
         public bool IsFavoritesDisplayed { get; set; }
-
         public bool IsFavoritesDirty { get; set; }
 
         //public void GenTestData(int n)

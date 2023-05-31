@@ -114,7 +114,7 @@
             this.clearToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(92, 45);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(92, 41);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
@@ -153,7 +153,7 @@
             this.editShopToolStripMenuItem,
             this.showToolStripMenuItem});
             this.shopToolStripMenuItem.Name = "shopToolStripMenuItem";
-            this.shopToolStripMenuItem.Size = new System.Drawing.Size(133, 45);
+            this.shopToolStripMenuItem.Size = new System.Drawing.Size(133, 41);
             this.shopToolStripMenuItem.Text = "Shops";
             // 
             // addShopToolStripMenuItem
@@ -193,7 +193,7 @@
             this.removeFromFavoriteToolStripMenuItem,
             this.removeAllToolStripMenuItem});
             this.favoriteToolStripMenuItem.Name = "favoriteToolStripMenuItem";
-            this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(177, 45);
+            this.favoriteToolStripMenuItem.Size = new System.Drawing.Size(177, 41);
             this.favoriteToolStripMenuItem.Text = "Favorites";
             // 
             // addToFavoriteToolStripMenuItem
@@ -233,12 +233,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.searchButton);
             this.groupBox1.Controls.Add(this.searchBox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(46, 93);
+            this.groupBox1.MaximumSize = new System.Drawing.Size(1378, 241);
+            this.groupBox1.MinimumSize = new System.Drawing.Size(1378, 241);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1378, 241);
             this.groupBox1.TabIndex = 2;
@@ -255,7 +258,10 @@
             this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.searchButton.Location = new System.Drawing.Point(517, 125);
+            this.searchButton.MaximumSize = new System.Drawing.Size(350, 77);
+            this.searchButton.MinimumSize = new System.Drawing.Size(350, 77);
             this.searchButton.Name = "searchButton";
+            this.searchButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.searchButton.Size = new System.Drawing.Size(350, 77);
             this.searchButton.TabIndex = 2;
             this.searchButton.Text = "Search";
@@ -341,7 +347,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(1500, 1200);
+            this.MaximumSize = new System.Drawing.Size(2500, 1400);
             this.MinimumSize = new System.Drawing.Size(1300, 1200);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
