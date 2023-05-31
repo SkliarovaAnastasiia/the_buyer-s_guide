@@ -113,9 +113,9 @@ namespace TraidingPointsApp
                 return false;
             }
 
-            if (!int.TryParse(editPhoneTextBox.Text, out _))
+            if (!long.TryParse(editPhoneTextBox.Text, out _))
             {
-                MessageBox.Show("The 'Telephone' field must contain only numeric characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The 'Telephone' field must contain only numeric characters !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
